@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios, { post } from 'axios'
 import { connect } from 'react-redux'
+import { withRouter } from "react-router-dom"
 
 
 import ContentHeader from '../common/template/content/contentHeader.jsx'
@@ -22,7 +23,11 @@ class XmlParser extends Component {
         });
     }
     handleSubmit(event){
+        event.preventDefault();
+
         const userName = this.props.user.UserName
+        const userID = this.props.user.UserID
+
         const form = new FormData()
         const config = {
             headers: {
@@ -34,14 +39,13 @@ class XmlParser extends Component {
             form.append('file', element);
         })
         form.append('userName',userName)
+        form.append('userID', userID)
         
         post('http://localhost:3018/oapi/admin/xml',form,config)
         
-        //retirar prevent default depois
-        event.preventDefault();
-       
+        this.props.history.push('/xmlapur');
+               
     }
-
     render(){
         return(
             <div>
@@ -53,7 +57,7 @@ class XmlParser extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <Dropzone onDrop={this.onDrop.bind(this)}>
                                     <p>Coloque aqui os arquivos para gerar as tabelas correspondentes. (Dois cliques funciona) </p>
-                                    <p>Só vão ser aceitos arquivos xml</p>
+                                    <p>Só vão ser aceitos arquivos .xml</p>
                                 </Dropzone >
                                 <aside>
                                     <h2>Arquivos que serão enviados</h2>
@@ -63,7 +67,8 @@ class XmlParser extends Component {
                                         }
                                     </ul>
                                 </aside>
-                                <input type="submit" value="Submit" />
+                                
+                                <input type="submit" value="Importar" />
                             </form>
                         </Grid>    
                     </Row>
@@ -74,4 +79,4 @@ class XmlParser extends Component {
 }
 
 const mapStateToProps = state => ({user: state.auth.user})
-export default connect(mapStateToProps,null)(XmlParser)
+export default withRouter(connect(mapStateToProps,null)(XmlParser))

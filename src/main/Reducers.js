@@ -4,12 +4,14 @@ import { reducer as toastrReducer } from 'react-redux-toastr'
 import TabReducer from '../common/tab/tabReducer.js'
 
 import AuthReducer from '../auth/authReducer.js'
+import XmlReducer from '../xmlParser/xmlReducer.js'
 
 const rootReducer = combineReducers({
     tab: TabReducer,
     form: formReducer,
     toastr: toastrReducer,
-    auth: AuthReducer
+    auth: AuthReducer,
+    xmlParser: XmlReducer
 })
 
 export default rootReducer
