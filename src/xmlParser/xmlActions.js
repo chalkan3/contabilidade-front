@@ -3,7 +3,7 @@ import { reset as resetForm } from 'redux-form'
 
 const INITIAL_VALUES = { DateForm: { datai: '', dataf: '' }, loading: false}
 
-const BASE_URL = 'http://localhost:3018/oapi/admin'
+const BASE_URL = 'http://54.233.79.155/oapi/admin'
 
 
 

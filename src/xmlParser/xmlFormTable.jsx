@@ -8,7 +8,7 @@ class XmlFormTable extends Component{
     componentWillUnmount(){
         this.props.SentForm(false)
     }
-
+  
     numberToReal(numb) {
         var numb = numb.toFixed(2).split('.');
         numb[0] = numb[0].split(/(?=(?:...)*$)/).join('.');
@@ -28,24 +28,39 @@ class XmlFormTable extends Component{
         
     }
 
+    calculateApuracao(valorEnt,valorDev){
+        //embaixo - se for negativo
+        var valorTotal = (valorEnt - valorDev)
+        
+        return valorTotal
+
+    }
+
     calculateAll(){
         const sum = (t, v) => t + v
         var EntArr = []
         var SaiArr = []
+        var valorTotal = 0
         
         this.props.xmlParser.apuracaoList.Ent === null ? EntArr = [""]  :  EntArr = this.props.xmlParser.apuracaoList.Ent
-        this.props.xmlParser.apuracaoList.Sai === null ? SaiArr = [""]  : SaiArr = this.props.xmlParser.apuracaoList.Sai 
-
+        this.props.xmlParser.apuracaoList.Sai === null ? SaiArr = [""]  :  SaiArr = this.props.xmlParser.apuracaoList.Sai 
+        
+        var EntValor = EntArr.map(e => +e.ValorDifal || 0).reduce(sum)
+        var SaiValor = SaiArr.map(s => +s.ValorDifal || 0).reduce(sum),
+        valorTotal = this.calculateApuracao(EntValor, SaiValor)
+        
+        
+           
         return{
-            sumOfent: EntArr.map(e => +e.ValorDifal || 0).reduce(sum),
-            sumOfsai: SaiArr.map(s => +s.ValorDifal || 0).reduce(sum)
-            
+            sumOfent: EntValor,
+            sumOfsai: SaiValor,
+            valorTotal: valorTotal
         }
     }
 
     renderRowsAq(){
         const listEnt = this.props.xmlParser.apuracaoList.Ent || []
-        const listDev = this.props.xmlParser.apuracaoList.Dev || []
+        const listDev = this.props.xmlParser.apuracaoList.Sai || []
 
 
         if (listDev.length > 0 && listEnt.length == 0){
@@ -91,7 +106,7 @@ class XmlFormTable extends Component{
 
     renderRowsDev() {
         const listEnt = this.props.xmlParser.apuracaoList.Ent || []
-        const listDev = this.props.xmlParser.apuracaoList.Dev || []
+        const listDev = this.props.xmlParser.apuracaoList.Sai || []
        
         if (listDev.length == 0 && listEnt.length  > 0){
             return listEnt.map(apuracao => (
@@ -133,7 +148,9 @@ class XmlFormTable extends Component{
     }
 
     render(){
-        const { sumOfent, sumOfsai } = this.calculateAll()
+        const {  sumOfent, sumOfsai, valorTotal } = this.calculateAll()
+        const devValorFormatado = valorTotal <= 0 ? this.numberToReal(valorTotal) : this.numberToReal(0)
+        const entValorFormatado = valorTotal >= 0 ? this.numberToReal(valorTotal) : this.numberToReal(0)
         return(
           <div>
                 <div className="box">
@@ -194,10 +211,28 @@ class XmlFormTable extends Component{
                         </table>
                     </div>
                     <div className="box-footer ">
-                        <div className='col-md-8'></div>
-                        <div className='col-md-2'>1- Total DIFAL - Devoluções</div>
-                        <div className='col-md-2'>
-                            <b>{this.numberToReal(sumOfsai)}</b>
+                        <div className='col-md-12'>
+                            <div className='col-md-8'></div>
+                            <div className='col-md-2'>1- Total DIFAL - Devoluções</div>
+                            <div className='col-md-2'>
+                                <b>{this.numberToReal(sumOfsai)}</b>
+                            </div>
+                        </div>
+                        <hr />
+                        
+                        <div className='col-md-12'>
+                            <div className='col-md-8'></div>
+                            <div className='col-md-2'>DIFAL a Pagar :</div>
+                            <div className='col-md-2'>
+                                <b>{entValorFormatado}</b>
+                            </div>
+                        </div>
+                        <div className='col-md-12'>
+                            <div className='col-md-8'></div>
+                            <div className='col-md-2 white-space' >DIFAL a Compensar em períodos Posteriores :</div>
+                            <div className='col-md-2'>
+                                <b>{devValorFormatado}</b>
+                            </div>
                         </div>
 
                     </div>

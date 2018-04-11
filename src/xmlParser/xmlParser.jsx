@@ -41,7 +41,7 @@ class XmlParser extends Component {
         form.append('userName',userName)
         form.append('userID', userID)
         
-        post('http://localhost:3018/oapi/admin/xml',form,config)
+        post('http://54.233.79.155/oapi/admin/xml',form,config)
         
         this.props.history.push('/xmlapur');
                
