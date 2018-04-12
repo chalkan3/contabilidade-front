@@ -1,11 +1,16 @@
 import axios from 'axios'
 import { reset as resetForm } from 'redux-form'
+import consts from '../consts.js'
+import { showTabs, selectTab } from '../common/tab/tabAction';
 
 const INITIAL_VALUES = { DateForm: { datai: '', dataf: '' }, loading: false}
 
-const BASE_URL = 'http://54.233.79.155/oapi/admin'
-
-
+export function initXml(){
+    return[
+        showTabs('xmlSend', 'xmlList', 'tabDelete'),
+        selectTab('xmlSend')
+    ]
+}
 
 export  function SelectedDatai(value){
     return updateForm(value,'datai')
@@ -38,7 +43,7 @@ function updateForm(value,type){
 export function getApuracao(id,datai,dataf){
  
     return dispatch => {
-        axios.get(`${BASE_URL}/getDataTable/${id}/${datai}/${dataf}`)
+        axios.get(`${consts.API_URL}/admin/getDataTable/${id}/${datai}/${dataf}`)
             .then(resp => dispatch({ type: 'APURACAO_LIST', payload: resp}))
             .then(resp => dispatch(SentForm(true)))
     }

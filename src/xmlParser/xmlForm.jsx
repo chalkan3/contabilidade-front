@@ -5,7 +5,7 @@ import { reduxForm, Field } from 'redux-form'
 
 
 import InputDatePicker from '../common/form/inputDatePicker.jsx'
-import { SelectedDatai, SelectedDataf, getApuracao } from './xmlActions.js'
+import { SelectedDatai, SelectedDataf, getApuracao, SentForm } from './xmlActions.js'
 
 
 
@@ -15,7 +15,6 @@ class XmlForm extends Component {
 
     render() {
         return (
-
             <div className="box box-primary">
                 <form role='form' >
                     <div className='box-body'>
@@ -32,7 +31,12 @@ class XmlForm extends Component {
                         />
                     </div>
                     <div className='box-footer'>
-                        <button type='button' className='btn btn-primary' onClick={() => this.props.getApuracao(this.props.user.UserID, this.props.DateForm.datai.toJSON(), this.props.DateForm.dataf.toJSON())}>Enviar</button>
+                        <button type='button' className='btn btn-primary' onClick={() => this.props.getApuracao(this.props.user.UserID, this.props.DateForm.datai.toJSON(), this.props.DateForm.dataf.toJSON())}>
+                            Enviar
+                        </button>
+                        <button type='button' className='btn btn-default margin' onClick={() => SentForm(false)}>
+                            Voltar
+                        </button>                        
                     </div>
                 </form>
             </div>

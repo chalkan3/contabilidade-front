@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios, { post } from 'axios'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { withRouter } from "react-router-dom"
+
 
 
 import ContentHeader from '../common/template/content/contentHeader.jsx'
@@ -9,74 +11,42 @@ import Content from '../common/template/content/content.jsx'
 import Row from '../common/layout/row'
 import Grid from '../common/layout/grid.jsx'
 import Dropzone from 'react-dropzone'
+import consts from '../consts.js'
+import Tabs from '../common/tab/tabs.jsx'
+import TabsHeader from '../common/tab/tabsHeader.jsx'
+import TabsContent from '../common/tab/tabsContent.jsx'
+import TabHeader from '../common/tab/tabHeader.jsx'
+import TabContent from '../common/tab/tabContent.jsx'
 
+import XmlForm from './xmlParserTabContent/xmlSend.jsx'
+import { initXml } from './xmlActions.js'
 class XmlParser extends Component {
-    constructor(){
-        super()
-        this.state = { files: [] }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    onDrop(files) {
-        this.setState({
-            files
-        });
-    }
-    handleSubmit(event){
-        event.preventDefault();
-
-        const userName = this.props.user.UserName
-        const userID = this.props.user.UserID
-
-        const form = new FormData()
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-        
-        this.state.files.forEach(element => {
-            form.append('file', element);
-        })
-        form.append('userName',userName)
-        form.append('userID', userID)
-        
-        post('http://54.233.79.155/oapi/admin/xml',form,config)
-        
-        this.props.history.push('/xmlapur');
-               
+    componentWillMount() {
+        this.props.initXml()
     }
     render(){
         return(
             <div>
                 <ContentHeader title='Enviar XML' small='Versão 1.0' />
                 <Content>
-                    <Row>
-                        <Grid cols='4 4 4' />
-                        <Grid cols='4 4 4'>
-                            <form onSubmit={this.handleSubmit}>
-                                <Dropzone onDrop={this.onDrop.bind(this)}>
-                                    <p>Coloque aqui os arquivos para gerar as tabelas correspondentes. (Dois cliques funciona) </p>
-                                    <p>Só vão ser aceitos arquivos .xml</p>
-                                </Dropzone >
-                                <aside>
-                                    <h2>Arquivos que serão enviados</h2>
-                                    <ul>
-                                        {
-                                            this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-                                        }
-                                    </ul>
-                                </aside>
-                                
-                                <input type="submit" value="Importar" />
-                            </form>
-                        </Grid>    
-                    </Row>
+                    <Tabs>
+                        <TabsHeader>
+                            <TabHeader label='Listar'  icon='bars'    target='xmlList'   />
+                            <TabHeader label='Incluir' icon='plus'    target='xmlSend'   />
+                            <TabHeader label='Excluir' icon='trash-o' target='tabDelete' />
+                        </TabsHeader>
+                        <TabsContent>
+                            <TabContent id='xmlSend'>
+                                <XmlForm />
+                            </TabContent>
+                        </TabsContent>
+                    </Tabs>
+                 
                 </Content>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({user: state.auth.user})
-export default withRouter(connect(mapStateToProps,null)(XmlParser))
+const mapDispatchTorProps = dispatch => bindActionCreators({initXml},dispatch)
+export default withRouter(connect(null,mapDispatchTorProps)(XmlParser))
