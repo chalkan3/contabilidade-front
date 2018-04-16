@@ -19,11 +19,14 @@ import TabHeader from '../common/tab/tabHeader.jsx'
 import TabContent from '../common/tab/tabContent.jsx'
 
 import XmlForm from './xmlParserTabContent/xmlSend.jsx'
+import XmlContainer from './xmlParserTabContent/xmlListContainer.jsx'
+
 import { initXml } from './xmlActions.js'
 class XmlParser extends Component {
-    componentWillMount() {
-        this.props.initXml()
+    componentDidMount() {
+        this.props.initXml(this.props.user.UserID)
     }
+   
     render(){
         return(
             <div>
@@ -39,6 +42,9 @@ class XmlParser extends Component {
                             <TabContent id='xmlSend'>
                                 <XmlForm />
                             </TabContent>
+                            <TabContent id='xmlList'>
+                                <XmlContainer />
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                  
@@ -48,5 +54,6 @@ class XmlParser extends Component {
     }
 }
 
-const mapDispatchTorProps = dispatch => bindActionCreators({initXml},dispatch)
-export default withRouter(connect(null,mapDispatchTorProps)(XmlParser))
+const mapStateToProps = state => ({user: state.auth.user})
+const mapDispatchToProps = dispatch => bindActionCreators({initXml},dispatch)
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(XmlParser))

@@ -1,0 +1,20 @@
+@media print{
+    td{font-size: 10px;}
+    th{font-size: 10px;}
+   
+  .pull-rights{
+      text-align: right;
+  }
+  .dpnone{
+    display: none;
+  }
+
+ .break-page{
+   page-break-before: always;
+ }
+
+
+  
+  
+
+}

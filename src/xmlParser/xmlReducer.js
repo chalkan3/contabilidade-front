@@ -3,9 +3,10 @@ import moment from 'moment';
 
 const INITIAL_STATE = {
     formSent: false,
-    DateForm: { datai: moment(), dataf: moment() },
+    DateForm: { datai: moment(), dataf: moment(), empresa:'' },
     apuracaoList: [],
-    loading: false
+    loading: false,
+    xmlList: []
 }
 
 
@@ -29,6 +30,11 @@ export default (state = INITIAL_STATE, action ) => {
             return{
                 ...state,
                 apuracaoList: action.payload.data
+            }
+        case 'XML_LIST_FETCHED':
+            return{
+                ...state,
+                xmlList: action.payload.data
             }
         default:
             return state

@@ -5,8 +5,8 @@ export default props =>(
         <a href="/#/" className='logo'>
             <span className='logo-mini'><b>mudar depois</b></span>
             <span className='logo-lg'>
-                <i className='fa fa-money'></i>
-                <b>A mudar</b>
+                <i className='fa fa-money margin'></i>
+                <b>Rgori</b>
             </span>
         </a>
         <nav className='navbar navbar-static-top'>

@@ -8,5 +8,7 @@ export default props => (
             <MenuItem label='Importar NFE' icon='usd' path='/xmlenviar'/>
             <MenuItem label='Relátorios NFE' icon='usd' path='/xmlapur' />            
         </MenuTree >
+        <MenuItem label='Empresas' icon='address-book-o' path='/Empresas' />            
+        
     </ul>
 )

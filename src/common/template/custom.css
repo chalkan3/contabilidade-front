@@ -22,6 +22,9 @@ body{min-height: 100%;}
     margin-top: 20px;
 }
 
+ .buttonPrintBack{
+      margin-right: 13px;
+ }
 
 .dropzone {
     border : 1px solid black;
@@ -33,7 +36,12 @@ body{min-height: 100%;}
     border: 2px dashed #ccc;
     padding: 0px 0px;
     margin: 20px auto
-  
+}
 
-
+.validateError{
+    color:red;
+    font-size: 18px;
+}
+.displaynone{
+    display: none;
 }
