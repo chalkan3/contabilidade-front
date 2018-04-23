@@ -13,9 +13,9 @@ class EmpresasList extends Component{
     renderRows(){
         const ListEmp = this.props.empresas.empresasList || []
 
-        return ListEmp.map(empresa => {
+        return ListEmp.map((empresa, index) => {
             return(
-                <tr key={empresa.empCnpj}>
+                <tr key={index}>
                     <td>{empresa.empNome}</td>
                     <td>{empresa.empInsc}</td>
                     <td>{empresa.empCnpj.replace(/\D/g, '').replace(/^(\d{2})(\d{3})?(\d{3})?(\d{4})?(\d{2})?/, "$1.$2.$3/$4-$5")}</td> 

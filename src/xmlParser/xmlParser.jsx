@@ -30,7 +30,7 @@ class XmlParser extends Component {
     render(){
         return(
             <div>
-                <ContentHeader title='Enviar XML' small='Versão 1.0' />
+                <ContentHeader title='Enviar XML' small='Versão 2.0' />
                 <Content>
                     <Tabs>
                         <TabsHeader>

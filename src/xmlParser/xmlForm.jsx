@@ -23,13 +23,13 @@ class XmlForm extends Component {
                 <form role='form' >
                     <div className='box-body'>
                         <Field name='datai' component={InputDatePicker}
-                            label='Datai' cols='12 4'
+                            label='Data Inicial' cols='12 4'
                             change={this.props.SelectedDatai}
                             value={this.props.DateForm.datai}
                         />
 
                         <Field name='dataf' component={InputDatePicker}
-                            label='Dataf' cols='12 4'
+                            label='Data Final' cols='12 4'
                             change={this.props.SelectedDataf}
                             value={this.props.DateForm.dataf}
                         />

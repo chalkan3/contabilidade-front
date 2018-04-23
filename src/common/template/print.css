@@ -13,7 +13,9 @@
    page-break-before: always;
  }
 
-
+.center-align{
+    text-align: center; 
+}
   
   
 

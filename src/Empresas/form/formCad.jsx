@@ -10,35 +10,39 @@ import { validate, initEmpresas } from '../EmpresasAction.js'
 
 
 class FormEmpresas extends Component {
- 
+
     componentDidMount() {
-        this.props.change('userID', this.props.user.UserID )
+        this.props.change('userID', this.props.user.UserID)
     }
-   
+    componentDidUpdate(){
+        this.props.change('userID', this.props.user.UserID)
+        
+    }
+
     render() {
 
-        const { handleSubmit, submitting, readyOnly, buttonName} = this.props
+        const { handleSubmit, submitting, readyOnly, buttonName } = this.props
         return (
             <div className='box box-primary'>
                 <form role='form' onSubmit={handleSubmit}>
                     <div className='box-body'>
                         <div className='box-body'>
-                            <Field name='empInsc' component={labelAndInput}
-                                label='Incrição'
-                                cols='12 4 '
-                                readyOnly={readyOnly}
-                               
-                            />
                             <Field name='empNome' component={labelAndInput}
                                 label='Nome da Empresa' cols='12 4 '
                                 readyOnly={readyOnly}
-                                
+
+                            />
+                            <Field name='empInsc' component={labelAndInput}
+                                label='Incrição Estadual'
+                                cols='12 4 '
+                                readyOnly={readyOnly}
+
                             />
                             <Field name='empCnpj' component={labelAndInputMask}
                                 label='Cnpj da Empresa' mask='11.111.111/1111-11'
                                 cols='12 4 '
                                 readyOnly={readyOnly}
-                                    
+
                             />
                             <Field name='userID' component='input'
                                 type='hidden'
@@ -57,10 +61,10 @@ class FormEmpresas extends Component {
                 </form>
             </div>
         )
-    } 
+    }
 }
-FormEmpresas = reduxForm({ form: 'Cademp', validate, destroyOnUnmount: false  })(FormEmpresas)
-const mapStateToprops = state => ({user:state.auth.user})
-const mapDispatchToProps = dispatch => bindActionCreators({ initEmpresas}, dispatch)
+FormEmpresas = reduxForm({ form: 'Cademp', validate, destroyOnUnmount: false })(FormEmpresas)
+const mapStateToprops = state => ({ user: state.auth.user })
+const mapDispatchToProps = dispatch => bindActionCreators({ initEmpresas }, dispatch)
 
 export default connect(mapStateToprops, mapDispatchToProps)(FormEmpresas)

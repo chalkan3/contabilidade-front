@@ -25,7 +25,12 @@ body{min-height: 100%;}
  .buttonPrintBack{
       margin-right: 13px;
  }
-
+ .margin-dropzone{
+        margin-top: 53px;
+ }
+.center-align{
+    text-align: center; 
+}
 .dropzone {
     border : 1px solid black;
     background-position: center;

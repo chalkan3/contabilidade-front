@@ -23,7 +23,7 @@ class Empresas extends Component{
     render(){
         return(
             <div>
-                <ContentHeader title='Cadastrar Empresas' small='Versão 1.0'/>
+                <ContentHeader title='Cadastrar Empresas' small='Versão 2.0'/>
                 <Content>
                     <Tabs>
                         <TabsHeader>

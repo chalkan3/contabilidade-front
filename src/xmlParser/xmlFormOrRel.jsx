@@ -17,7 +17,7 @@ class xmlFormOrRel extends Component {
         if (this.props.xmlState.formSent) {
             return (
                 <div>
-                    <ContentHeader title='Apuração' small='Versão 1.0' >
+                    <ContentHeader title='Apuração' small='Versão 2.0' >
                         <div>
                             <button className='btn btn-primary dpnone pull-right' type='button' id='printApuracao' onClick={() => window.print()}>
                                 <i className='fa fa-print iconMargin'></i>

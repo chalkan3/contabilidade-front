@@ -6,6 +6,9 @@ import TabReducer from '../common/tab/tabReducer.js'
 import AuthReducer from '../auth/authReducer.js'
 import XmlReducer from '../xmlParser/xmlReducer.js'
 import EmpresasReducer from '../Empresas/EmpresasReducer.js'
+import IndustriaReducer from '../Industria/IndustriaReducer.js'
+import CfopReducer from '../Cfop/CfopReducer'
+import CstReducer from '../Cst/CstReducer'
 
 const rootReducer = combineReducers({
     tab: TabReducer,
@@ -13,7 +16,10 @@ const rootReducer = combineReducers({
     toastr: toastrReducer,
     auth: AuthReducer,
     xmlParser: XmlReducer,
-    Empresa: EmpresasReducer
+    Empresa: EmpresasReducer,
+    Industria: IndustriaReducer,
+    Cfop: CfopReducer,
+    Cst: CstReducer
 })
 
 export default rootReducer

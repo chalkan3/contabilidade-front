@@ -46,8 +46,8 @@ class XmlFormTable extends Component {
         var SaiArr = []
         var valorTotal = 0
 
-        this.props.xmlParser.apuracaoList.Ent === null ? EntArr = [""] : EntArr = this.props.xmlParser.apuracaoList.Ent
-        this.props.xmlParser.apuracaoList.Sai === null ? SaiArr = [""] : SaiArr = this.props.xmlParser.apuracaoList.Sai
+        this.props.xmlParser.apuracaoList.ListXML.Ent === null ? EntArr = [""] : EntArr = this.props.xmlParser.apuracaoList.ListXML.Ent
+        this.props.xmlParser.apuracaoList.ListXML.Sai === null ? SaiArr = [""] : SaiArr = this.props.xmlParser.apuracaoList.ListXML.Sai
 
         var EntValor = EntArr.map(e => +e.ValorDifal || 0).reduce(sum)
         var SaiValor = SaiArr.map(s => +s.ValorDifal || 0).reduce(sum),
@@ -62,33 +62,30 @@ class XmlFormTable extends Component {
         }
     }
 
-    breakAq(){
-        const listEnt = this.props.xmlParser.apuracaoList.Ent || []
+   
+    breakPage(flag){
+        const listDev = this.props.xmlParser.apuracaoList.ListXML.Sai || []
+        const listEnt = this.props.xmlParser.apuracaoList.ListXML.Ent || []
+        let lenTotal = listEnt.length + listDev.length 
 
-        return listEnt.map((Ent,index) => {
-            if(index == 18){
+        for(let i=0;i < lenTotal;i++){
+            if (i <= listEnt.length && flag == 'aq' && (lenTotal % 15) == 0){
                 return(
-                    <div className='break-page'></div>
+                    <div className='break-page'></div>                    
+                )
+            } else if (i <= listEnt.length && flag == 'dev' && (lenTotal % 15) == 0){
+                return(
+                    <div className='break-page'></div>                    
                 )
             }
-        })
-        
-    }
-    breakDev(){
-        const listDev = this.props.xmlParser.apuracaoList.Sai || []
-        return listDev.map((Ent,index) => {
-            if(index == 18){
-                return (
-                    <div className='break-page'></div>
-                )
-            }
-        })
+        }
+       
         
     }
 
     renderRowsAq() {
-        const listEnt = this.props.xmlParser.apuracaoList.Ent || []
-        const listDev = this.props.xmlParser.apuracaoList.Sai || []
+        const listEnt = this.props.xmlParser.apuracaoList.ListXML.Ent || []
+        const listDev = this.props.xmlParser.apuracaoList.ListXML.Sai || []
 
         
         if (listDev.length > 0 && listEnt.length == 0) {
@@ -135,8 +132,8 @@ class XmlFormTable extends Component {
     }
 
     renderRowsDev() {
-        const listEnt = this.props.xmlParser.apuracaoList.Ent || []
-        const listDev = this.props.xmlParser.apuracaoList.Sai || []
+        const listEnt = this.props.xmlParser.apuracaoList.ListXML.Ent || []
+        const listDev = this.props.xmlParser.apuracaoList.ListXML.Sai || []
 
         if (listDev.length == 0 && listEnt.length > 0) {
             return listEnt.map(apuracao => (
@@ -183,6 +180,7 @@ class XmlFormTable extends Component {
         const { sumOfent, sumOfsai, valorTotal } = this.calculateAll()
         const devValorFormatado = valorTotal <= 0 ? this.numberToReal(valorTotal) : this.numberToReal(0)
         const entValorFormatado = valorTotal >= 0 ? this.numberToReal(valorTotal) : this.numberToReal(0)
+        const Empresa = this.props.xmlParser.apuracaoList.Empresa
         return (
             <div>
               
@@ -192,8 +190,46 @@ class XmlFormTable extends Component {
                         <div className='box-body table-responsive '>
                             <table className='table table-bordered'>
                                 <thead>
+                                    <tr >
+                                        <th colSpan={7}>
+                                            <h3 className='center-align'>Demonstrativo Mensal  das Aquisições e Devoluções Interestaduais de Mercadorias
+                                            Destinadas à Comercialização
+                                            </h3>
+                                        </th>
+                                    </tr>
                                     <tr>
-                                        <th colSpan={6}><h3>Aquisições</h3></th>
+                                        <th colSpan={6}>
+                                            <p className='pull-right'>
+                                                Período de Apuração
+                                                (Mês/Ano)
+                                            </p>
+                                        </th>
+                                        <th>
+                                            <p >
+                                               _____/______
+                                            </p>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Empresa Nome</th>
+                                        <th>Cnpj</th>
+                                        <th colSpan={7}>Inscrição Estadual</th>                                                                                
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{Empresa.empNome}</td>
+                                        <td>{Empresa.empCnpj.replace(/\D/g, '').replace(/^(\d{2})(\d{3})?(\d{3})?(\d{4})?(\d{2})?/, "$1.$2.$3/$4-$5")}</td>
+                                        <td colSpan={7}>{Empresa.empInsc}</td>                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table className='table table-bordered'>
+                                <thead>
+                                   
+                                    <tr>
+                                        <th colSpan={6}><h4>Aquisições</h4></th>
                                     </tr>
                                     <tr>
                                         <th>Data Da Entrada</th>
@@ -214,7 +250,7 @@ class XmlFormTable extends Component {
                                 </tbody>
 
                             </table>
-                            {this.breakAq()}
+                            {this.breakPage('aq')}
                             <table className='table table-bordered'>
                                 <thead>
                                     <tr>
@@ -240,7 +276,7 @@ class XmlFormTable extends Component {
 
 
                             </table>
-                            {this.breakDev()}
+                            {this.breakPage('dev')}
                             <table className='table table-bordered'>
                                <tbody>
                                     <tr>
