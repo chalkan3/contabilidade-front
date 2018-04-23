@@ -15,6 +15,9 @@ body{min-height: 100%;}
       text-align: justify;
   
 }
+.toUpper{
+    text-transform: uppercase;
+}
 .iconMargin{
     margin-right:9px;
 }

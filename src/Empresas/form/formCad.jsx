@@ -18,7 +18,7 @@ class FormEmpresas extends Component {
         this.props.change('userID', this.props.user.UserID)
         
     }
-
+  
     render() {
 
         const { handleSubmit, submitting, readyOnly, buttonName } = this.props
@@ -29,12 +29,14 @@ class FormEmpresas extends Component {
                         <div className='box-body'>
                             <Field name='empNome' component={labelAndInput}
                                 label='Nome da Empresa' cols='12 4 '
+                                className='toUpper'
                                 readyOnly={readyOnly}
 
                             />
-                            <Field name='empInsc' component={labelAndInput}
+                            <Field name='empInsc' component={labelAndInputMask}
                                 label='Incrição Estadual'
                                 cols='12 4 '
+                                mask='11.111.111-1'
                                 readyOnly={readyOnly}
 
                             />
