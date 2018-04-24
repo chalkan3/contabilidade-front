@@ -9,6 +9,7 @@ import EmpresasReducer from '../Empresas/EmpresasReducer.js'
 import IndustriaReducer from '../Industria/IndustriaReducer.js'
 import CfopReducer from '../Cfop/CfopReducer'
 import CstReducer from '../Cst/CstReducer'
+import DashBoardReducer from '../DashBoard/dashboardReducer'
 
 const rootReducer = combineReducers({
     tab: TabReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     Empresa: EmpresasReducer,
     Industria: IndustriaReducer,
     Cfop: CfopReducer,
-    Cst: CstReducer
+    Cst: CstReducer,
+    Dashboard: DashBoardReducer
 })
 
 export default rootReducer

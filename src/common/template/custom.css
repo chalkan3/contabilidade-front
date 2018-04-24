@@ -15,6 +15,9 @@ body{min-height: 100%;}
       text-align: justify;
   
 }
+.margin-aviso{
+    margin-bottom: 0!important;
+}
 .toUpper{
     text-transform: uppercase;
 }

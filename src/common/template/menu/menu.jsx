@@ -4,6 +4,7 @@ import MenuTree from './menuTree.jsx'
 
 export default props => (
     <ul className='sidebar-menu'>
+        <MenuItem label='Ínicio' icon='tachometer' path='/dashboard' />    
         <MenuTree label='Importação' icon='paper-plane'>
             <MenuItem label='Importar NFE' icon='download' path='/xmlenviar'/>
             <MenuItem label='Relátorios NFE' icon='file' path='/xmlapur' />            
