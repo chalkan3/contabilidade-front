@@ -23,6 +23,9 @@ class InputDatePicker extends Component{
                         format="DD/MM/YYYY"
                         time={false}
                        />
+                    <span className={`glyphicon glyphicon-${this.props.icon} from-control-feedback`}></span>
+                    {this.props.meta.touched && ((this.props.meta.error && <span className='validateError'><i className="fa fa-exclamation-triangle margin" aria-hidden="true"></i>{this.props.meta.error}</span>) || (this.props.meta.warning && <span>{this.props.meta.warning}</span>))}
+
                 </div>
             </Grid>
         )

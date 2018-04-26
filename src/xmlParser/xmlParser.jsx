@@ -20,13 +20,14 @@ import TabContent from '../common/tab/tabContent.jsx'
 
 import XmlForm from './xmlParserTabContent/xmlSend.jsx'
 import XmlContainer from './xmlParserTabContent/xmlListContainer.jsx'
+import XmlDelete from './xmlParserTabContent/xmlDelete'
 
-import { initXml } from './xmlActions.js'
+
+import { initXml, cleanXML } from './xmlActions.js'
 class XmlParser extends Component {
     componentDidMount() {
         this.props.initXml(this.props.user.UserID)
     }
-   
     render(){
         return(
             <div>
@@ -40,10 +41,13 @@ class XmlParser extends Component {
                         </TabsHeader>
                         <TabsContent>
                             <TabContent id='xmlSend'>
-                                <XmlForm />
+                                <XmlForm  />
                             </TabContent>
                             <TabContent id='xmlList'>
                                 <XmlContainer />
+                            </TabContent>
+                            <TabContent id='tabDelete'>
+                                <XmlDelete onSubmit={this.props.cleanXML} />
                             </TabContent>
                         </TabsContent>
                     </Tabs>
@@ -55,5 +59,5 @@ class XmlParser extends Component {
 }
 
 const mapStateToProps = state => ({user: state.auth.user})
-const mapDispatchToProps = dispatch => bindActionCreators({initXml},dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ initXml, cleanXML},dispatch)
 export default withRouter(connect(mapStateToProps,mapDispatchToProps)(XmlParser))

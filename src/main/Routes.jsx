@@ -9,18 +9,19 @@ import Industria from '../Industria/Industria.jsx'
 import Cfop from '../Cfop/Cfop'
 import Cst from '../Cst/Cst'
 import DashBoard from '../DashBoard/dashboard'
+import Admin from '../Admin/admin'
 
 export default props => (
     <div className='content-wrapper'>
         <Switch>
             <Route exact path="/dashboard" component={DashBoard} />
             <Route  path="/xmlenviar" component={XmlParser} />
-            <Route path="/xmlapur" component={XmlFormOrRel} />
-            <Route path="/Empresas" component={Empresas} />
-            <Route path="/xmlindustria" component={Industria} />
-            <Route path="/Cfop" component={Cfop} />
-            <Route path="/Cst" component={Cst} />
-            
+            <Route  path="/xmlapur" component={XmlFormOrRel} />
+            <Route  path="/Empresas" component={Empresas} />
+            <Route  path="/xmlindustria" component={Industria} />
+            <Route  path="/Cfop" component={Cfop} />
+            <Route  path="/Cst" component={Cst} />
+            <Route path="/Anuidade" component={Admin} />
             <Redirect to='/' />
         </Switch>
     </div>

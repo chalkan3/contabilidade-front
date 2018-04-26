@@ -21,6 +21,7 @@ export default (state = INITIAL_STATE, action ) => {
                     [action.payload.type]: action.payload.value
                 }
             }
+      
         case 'XML_SENT_FORM':
             return{
                 ...state,

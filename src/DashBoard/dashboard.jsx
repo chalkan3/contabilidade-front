@@ -16,14 +16,16 @@ class DashBoard extends Component{
         }
     render(){
         const Vars = this.props.dashboard.DashBoardList || []
+        let VenctoTxt = this.props.user.QtdDias == 0 ? " Hoje " : ` em ${this.props.user.QtdDias} dias`
         return(
             <div>
                 <ContentHeader title='Painel de Controle' small='Versão 1.0' />
                     <IF test={this.props.user.QtdDias <= 10}>
                         <div className='pad margin no-print'>
                             <div className="callout callout-info margin-aviso">
-                                <h4><i className="fa fa-info"></i> Aviso:</h4>
-                                A liçensa vence em {this.props.user.QtdDias} dias
+                            <h4 className="vencto-title"><i className="fa fa-info"></i> Aviso:</h4>
+                            <p className="vencto-p">A liçensa vence <b className='color-black'>{VenctoTxt}</b></p>
+                            <p>Para renovar entre em contato no email <a href="mailto:comercial@rgori.com.br" target="_top">comercial@rgori.com.br</a></p>
                             </div>
                         </div>
                     </IF>
