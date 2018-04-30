@@ -1,11 +1,12 @@
 import axios from 'axios'
-import { reset as resetForm } from 'redux-form'
+import { reset as resetForm, initialize } from 'redux-form'
 import consts from '../consts.js'
 import { toastr } from 'react-redux-toastr'
 
 import { showTabs, selectTab } from '../common/tab/tabAction'
 
 const INITIAL_VALUES = { DateForm: { datai: '', dataf: '', empresa: '' }, loading: false}
+const INITIAL_FORM_VALUES = {}
 
 //exportar para o global
 function FormataStringData(data) {
@@ -22,7 +23,8 @@ export function initXml(userID){
     return[
         showTabs('xmlSend', 'xmlList', 'tabDelete'),
         selectTab('xmlSend'),
-        GetXMLlist(userID)
+        GetXMLlist(userID),
+        initialize('xmlExec', INITIAL_FORM_VALUES)
     ]
 }
 

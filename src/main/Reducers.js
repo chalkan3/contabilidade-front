@@ -10,6 +10,7 @@ import IndustriaReducer from '../Industria/IndustriaReducer.js'
 import CfopReducer from '../Cfop/CfopReducer'
 import CstReducer from '../Cst/CstReducer'
 import DashBoardReducer from '../DashBoard/dashboardReducer'
+import AdminReducer from '../Admin/adminReducers'
 
 const rootReducer = combineReducers({
     tab: TabReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     Industria: IndustriaReducer,
     Cfop: CfopReducer,
     Cst: CstReducer,
-    Dashboard: DashBoardReducer
+    Dashboard: DashBoardReducer,
+    Admin: AdminReducer
 })
 
 export default rootReducer

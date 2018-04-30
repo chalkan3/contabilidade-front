@@ -11,12 +11,16 @@ import ContentHeader from '../common/template/content/contentHeader.jsx'
 import Content from '../common/template/content/content.jsx'
 
 import ListUser from './List/ListUser'
+import Form from './Form/formCreate'
 
-import { InitAdmList } from './adminAction'
+import { InitAdmList,CreateUser } from './adminAction'
 
 class AdminDashBoard extends Component{
     componentWillMount(){
-        this.props.InitAdmList()
+        const AdminID = this.props.user.Admin
+        const UserID = this.props.user.UserID
+        
+        this.props.InitAdmList(UserID,AdminID)
     }
     render(){
         return(
@@ -26,10 +30,14 @@ class AdminDashBoard extends Component{
                     <Tabs>
                         <TabsHeader>
                             <TabHeader label='Listar' icon='bars' target='AnuidadeList' />
+                            <TabHeader label='Criar' icon='rocket' target='AnuidadeCreate' />
                         </TabsHeader>
                         <TabsContent >
                             <TabContent id="AnuidadeList">
-                                <ListUser />
+                                <ListUser AdminID={this.props.user.Admin} UserID={this.props.user.UserID} />
+                            </TabContent>
+                            <TabContent id='AnuidadeCreate' >
+                                <Form onSubmit={this.props.CreateUser} admID={this.props.user.Admin}  UserID={this.props.user.UserID}/>
                             </TabContent>
                         </TabsContent>
                     </Tabs>
@@ -40,6 +48,6 @@ class AdminDashBoard extends Component{
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ InitAdmList},dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ InitAdmList,CreateUser},dispatch)
 const mapStateToProps = state => ({user: state.auth.user})
-export default connect(null,mapDispatchToProps)(AdminDashBoard)
+export default connect(mapStateToProps,mapDispatchToProps)(AdminDashBoard)
