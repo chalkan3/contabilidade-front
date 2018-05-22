@@ -14,10 +14,13 @@ import TabsHeader from '../common/tab/tabsHeader.jsx'
 import TabsContent from '../common/tab/tabsContent.jsx'
 import TabHeader from '../common/tab/tabHeader.jsx'
 import TabContent from '../common/tab/tabContent.jsx'
+import XmlDelete from '../xmlParser/xmlParserTabContent/xmlDelete'
 
 import IndustriaForm from './form/IndustriaForm.jsx'
 
 import { initXmlIndustria } from './IndustriaAction.js'
+
+import {cleanXML} from '../xmlParser/xmlActions'
 
 class Industria extends Component {
   
@@ -32,10 +35,15 @@ class Industria extends Component {
                     <Tabs>
                         <TabsHeader>
                             <TabHeader label='Incluir' icon='plus' target='industriaIncluir' />
+                            <TabHeader label='Excluir' icon='trash-o' target='industriaDelete' />
+                            
                         </TabsHeader>
                         <TabsContent>
                             <TabContent id='industriaIncluir'>
                                 <IndustriaForm />
+                            </TabContent>
+                            <TabContent id='industriaDelete'>
+                                <XmlDelete onSubmit={this.props.cleanXML}/>
                             </TabContent>
                         </TabsContent>
                     </Tabs>
@@ -47,5 +55,5 @@ class Industria extends Component {
 }
 
 const mapStateToProps = state => ({ user: state.auth.user })
-const mapDispatchToProps = dispatch => bindActionCreators({ initXmlIndustria }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ initXmlIndustria,cleanXML }, dispatch)
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Industria))

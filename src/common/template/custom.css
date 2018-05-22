@@ -19,6 +19,20 @@ body{min-height: 100%;}
     font-size: 24px;
 
 }
+
+.marg-arquivos{
+    margin-left: -22px;
+}
+.marg {
+    margin-left:-10px;
+}
+.text-align{
+    text-align: center;
+}
+
+.green-letter{
+    color: green;
+}
 .vencto-p{
     font-size: 22px;
 
@@ -67,3 +81,4 @@ body{min-height: 100%;}
 .displaynone{
     display: none;
 }
+

@@ -62,7 +62,6 @@ class EmpresasList extends Component{
         )
     }
 }
-showDelete
 
 const mapStateToProps = state => ({ empresas: state.Empresa})
 const mapDispatchToProps = dispatch => bindActionCreators({ showDelete, showUpdate}, dispatch)

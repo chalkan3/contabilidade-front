@@ -10,6 +10,7 @@ import Cfop from '../Cfop/Cfop'
 import Cst from '../Cst/Cst'
 import DashBoard from '../DashBoard/dashboard'
 import Admin from '../Admin/admin'
+import Ncm from '../Ncm/Ncm'
 
 export default props => (
     <div className='content-wrapper'>
@@ -22,6 +23,8 @@ export default props => (
             <Route  path="/Cfop" component={Cfop} />
             <Route  path="/Cst" component={Cst} />
             <Route path="/Anuidade" component={Admin} />
+            <Route path="/Ncm" component={Ncm} />
+            
             <Redirect to='/' />
         </Switch>
     </div>

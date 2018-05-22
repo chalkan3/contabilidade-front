@@ -70,7 +70,6 @@ export function showUpdate(Cst){
 
 
 export function validate(values){
-    console.log(values)
     const errors = {}
     var Cst = values.cst || []
     

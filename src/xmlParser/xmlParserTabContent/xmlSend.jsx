@@ -77,8 +77,8 @@ class XmlParser extends Component {
             <div>
 
                     <Row>
-                        <Grid cols='4 4 4' />
-                        <Grid cols='4 4 4'>
+                        <Grid cols='12 12 4' />
+                        <Grid cols='12 12 4'>
                             <form onSubmit={this.handleSubmit}>
                                 <Dropzone onDrop={this.onDrop.bind(this)} 
                                 accept="text/xml" 
@@ -87,16 +87,16 @@ class XmlParser extends Component {
                                        <div>
                                         <Grid cols='4 4 4' />
                                         <Grid cols='4 4 4'>
-                                            <h4 className='white-space align-center margin-left-dropzone'>Importação</h4>
+                                            <h4 className='white-space align-center margin-left-dropzone marg text-align'>Importação</h4>
                                         </Grid>
                                         </div>
                                     </Grid>
                                     <Grid cols='12 12 12' >
                                         <div>
                                             <Grid cols='4 4 4' />
-                                            <Grid cols='4 4 4' >
+                                            <Grid cols='4 6 7' >
                                             
-                                                <p className='white-space align-center margin-left-dropzonep'>
+                                                <p className='white-space align-center margin-left-dropzonep text-align'>
                                                     <b>*Só irão ser aceitos arquivos .xml</b>
                                                 </p>
                                             </Grid>
@@ -106,7 +106,7 @@ class XmlParser extends Component {
                                         <div>
                                             <Grid cols='4 4 4' />
                                             <Grid cols='4 4 4' >
-                                                <button className='btn btn-primary form-control margin-dropzone button-dropzon' type='button'>Upload</button>
+                                                <button className='btn btn-primary  margin-dropzone button-dropzon' type='button'>Upload</button>
                                             </Grid>
                                         </div>
                                     </Grid>
@@ -114,7 +114,7 @@ class XmlParser extends Component {
                                 </Dropzone >
                                 <Grid cols='12 12 12' >
                                     <aside>
-                                        <h2 className="white-space">Arquivos que serão enviados</h2>
+                                        <h2 className="white-space text-align marg-arquivos">Arquivos que serão enviados</h2>
 
                                         <Pagination data={dataPagination} />
                                     </aside>

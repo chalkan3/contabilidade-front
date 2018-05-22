@@ -25,7 +25,17 @@ export function login(values) {
 
 export function logout() {
     return { type: 'TOKEN_VALIDATED', payload: false }
+    
 }
+
+
+
+export function contatoNovo(values){
+    axios.post(`${consts.OAPI_URL}/admin/contato`,values)
+    toastr.success('Sucesso','Foi enviado um e-mail para nossos especialistas. Logo iremos entrar em contato com você')
+    
+}
+
 
 export function validateToken(token) {
     return dispatch => {

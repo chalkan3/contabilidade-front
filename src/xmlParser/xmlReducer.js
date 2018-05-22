@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const INITIAL_STATE = {
     formSent: false,
-    DateForm: { datai: moment(), dataf: moment(), empresa:'' },
+    DateForm: { datai: moment(), dataf: moment(), empresa:'', dia:'',ano:'' },
     apuracaoList: [],
     loading: false,
     xmlList: []

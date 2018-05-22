@@ -42,6 +42,14 @@ export function SelectEmpresa(value){
     return updateForm(value.empCnpj,'empresa')
 }
 
+export function SelectDia(event){
+    return updateForm(event.target.value,'dia')
+}
+
+export function SelectAno(event){
+    return updateForm(event.target.value,'ano')
+}
+
 export function SentForm(openClose){
     return{
         type: 'XML_SENT_FORM',
@@ -80,7 +88,6 @@ function submit(values, method, userID) {
 function updateForm(value,type){
    
     const DateFormUpdate = {type:type,value:value}
-    
     return{
         type: 'XML_FORM_SENT',
         payload: DateFormUpdate
@@ -100,8 +107,6 @@ export function getApuracao(id,datai,dataf,cnpj){
 export function validate(values) {
     
     const errors = {}
-    var Cst = values.datai || []
-
     if (!values.datai) {
         errors.datai = 'Data Inicial é necessária'
     }

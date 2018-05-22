@@ -11,6 +11,7 @@ import CfopReducer from '../Cfop/CfopReducer'
 import CstReducer from '../Cst/CstReducer'
 import DashBoardReducer from '../DashBoard/dashboardReducer'
 import AdminReducer from '../Admin/adminReducers'
+import NcmReducer from '../Ncm/NcmReducer'
 
 const rootReducer = combineReducers({
     tab: TabReducer,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     Cfop: CfopReducer,
     Cst: CstReducer,
     Dashboard: DashBoardReducer,
-    Admin: AdminReducer
+    Admin: AdminReducer,
+    Ncm: NcmReducer
 })
 
 export default rootReducer

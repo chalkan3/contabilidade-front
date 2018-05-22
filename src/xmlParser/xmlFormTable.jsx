@@ -176,6 +176,15 @@ class XmlFormTable extends Component {
 
     }
 
+    showDate(){
+        if(this.props.xmlParser.DateForm.dia != '' || this.props.xmlParser.DateForm.ano != '' ){
+            return this.props.xmlParser.DateForm.dia + '/' + this.props.xmlParser.DateForm.ano
+        }else{
+            return '_____/______'
+            
+        }
+    }
+
     render() {
         const { sumOfent, sumOfsai, valorTotal } = this.calculateAll()
         const devValorFormatado = valorTotal <= 0 ? this.numberToReal(valorTotal) : this.numberToReal(0)
@@ -206,7 +215,7 @@ class XmlFormTable extends Component {
                                         </th>
                                         <th>
                                             <p >
-                                               _____/______
+                                               {this.showDate()}
                                             </p>
                                         </th>
                                     </tr>
@@ -306,6 +315,6 @@ class XmlFormTable extends Component {
 }
 
 
-const mapStateToProps = state => ({ xmlParser: state.xmlParser, user: state.auth })
+const mapStateToProps = state => ({ xmlParser: state.xmlParser, user: state.auth})
 const mapDispatchToProps = dispatch => bindActionCreators({ getApuracao, SentForm }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(XmlFormTable)

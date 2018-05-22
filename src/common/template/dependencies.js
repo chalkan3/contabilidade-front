@@ -12,5 +12,11 @@ import 'admin-lte/dist/css/skins/_all-skins.min.css'
 import 'admin-lte/plugins/iCheck/flat/blue.css'
 import './custom.css'
 import './print.css'
+import './reset.css'
+import './normalize.css'
+import './main.css'
+
+
+
 
 

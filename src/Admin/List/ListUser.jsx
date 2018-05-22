@@ -31,14 +31,16 @@ class ListUser extends Component {
     
     renderRows() {
         const userList = this.props.user || []
-
+        const todayDate = new Date()
         return userList.map((user, index) => {
+            let userDate = new Date(user.Venct)
+            const userOK = userDate > todayDate ? 'green-letter' : ''
             return (
-                <tr key={index}>
+                <tr key={index} className={userOK}>
                     <td>{user.Name}</td>
                     <td>{user.Email}</td>
                     <td>
-                        <MaskedInput className='form-control'  mask='11/11/1111' type="text" value={this.fomatDateIso(user.Venct)} onChange={(event) => this.props.ChangeUserAnuidade(index,event) }/>
+                        <MaskedInput className=''  mask='11/11/1111' type="text" value={this.fomatDateIso(user.Venct)} onBlur={(event) => this.props.ChangeUserAnuidade(index,event) }/>
                     </td>
                     <td>
                         <button type='button' className='btn btn-info ' onClick={() => this.props.Liberar(user,this.props.AdminID,this.props.UserID)}>

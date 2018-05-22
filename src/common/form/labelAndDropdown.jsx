@@ -14,8 +14,9 @@ export default props => (
                 valueField={props.valueField}
                 textField={props.textField}
                 defaultValue={props.defaultValue}
-                onChange={props.change}
-                value={props.value}
+                onChange={props.input.onChange}
+                value={props.input.value}
+                disabled={props.disabled}
                 
             />
             <span className={`glyphicon glyphicon-${props.icon} from-control-feedback`}></span>

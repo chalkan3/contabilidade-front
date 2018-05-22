@@ -58,9 +58,9 @@ class XmlFormDelete extends Component {
                             label='Empresa'
                             cols='12 4'
                             data={empresas}
-                            valueField='empresaID'
+                            valueField='empCnpj'
                             textField='empNome'
-                            change={this.props.SelectEmpresa}
+                            onChange={this.props.SelectEmpresa}
                             value={this.props.DateForm.empresa}
 
                         />
